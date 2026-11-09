@@ -57,8 +57,8 @@ class ControllerUtilisateur{
             $erreurs[] = 'Date de naissance invalide.';
         }
 
-        // E-mail : format valide
-        if (strlen($valeurs['email'])|| !filter_var($valeurs['email'], FILTER_VALIDATE_EMAIL)) {
+        // E-mail : non vide et format valide
+        if (empty($valeurs['email']) || !filter_var($valeurs['email'], FILTER_VALIDATE_EMAIL)) {
             $erreurs[] = 'Adresse e-mail invalide.';
         } elseif ($this->getModel()->findByEmail($valeurs['email']) !== null) {
             $erreurs[] = 'Cette adresse e-mail est déjà utilisée.';
